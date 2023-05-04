@@ -29,17 +29,33 @@ namespace QuadraticEquationSolver
 
         static void FileMode(string filePath)
         {
-            string[] lines = File.ReadAllLines(filePath);
-            if (lines.Length < 3)
+            if (!File.Exists(filePath))
             {
-                Console.WriteLine("Invalid file format. Expected at least 3 lines.");
-                return;
+                Console.WriteLine($"file {filePath} does not exist");
+                Environment.Exit(1);
             }
 
-            if (!double.TryParse(lines[0], out double a) || !double.TryParse(lines[1], out double b) || !double.TryParse(lines[2], out double c))
+            string content = File.ReadAllText(filePath).Trim();
+            string[] coefficients = content.Split(' ');
+
+            double a = 0, b = 0, c = 0; // Initialize to default values
+
+            if (coefficients.Length != 3)
             {
-                Console.WriteLine("Invalid file format. Expected valid real numbers.");
-                return;
+                Console.WriteLine("invalid file format");
+                Environment.Exit(1);
+            }
+
+            if (!double.TryParse(coefficients[0], out a) || !double.TryParse(coefficients[1], out b) || !double.TryParse(coefficients[2], out c))
+            {
+                Console.WriteLine("invalid file format");
+                Environment.Exit(1);
+            }
+
+            if (a == 0)
+            {
+                Console.WriteLine("Error. a cannot be 0");
+                Environment.Exit(1);
             }
 
             Console.WriteLine($"Equation is: ({a}) x^2 + ({b}) x + ({c}) = 0");

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "QuadraticEquationSolver": {
+      "commandName": "Project",
+      "commandLineArgs": "numbers.txt"
+    }
+  }
+}
