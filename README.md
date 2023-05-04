@@ -78,5 +78,3 @@ dotnet test
 ```
 
 This will run all test cases and display the results.
-
-SOMETHING TO REVERT
